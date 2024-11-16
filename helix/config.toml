@@ -1,0 +1,46 @@
+theme = "tokyonight_storm"
+
+[editor]
+bufferline = "multiple"
+cursorline = true
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+character = "╎"
+render = true
+
+[editor.gutters.line-numbers]
+min-width = 1
+
+[editor.lsp]
+display-messages = true
+
+[editor.statusline]
+left = ["mode", "separator", "file-type", "file-name", "file-modification-indicator"]
+center = ["version-control"]
+right = ["diagnostics", "position", "file-line-ending"]
+
+
+[keys.normal]
+"$" = "goto_line_end"
+0 = "goto_line_start"
+L = "goto_next_buffer"
+H = "goto_previous_buffer"
+X = ":bclose"
+x = "delete_selection"
+V = "extend_line_below"
+"C-a" = "select_all"
+"C-r" = "redo"
+"C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
+
+[keys.select]
+"$" = "goto_line_end"
+0 = "goto_line_start"

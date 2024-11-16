@@ -1,0 +1,5 @@
+[manager]
+prepend_keymap = [
+	{ on = [ "f", "t" ], run = "search rg", desc = "Search for text" },
+	{ on = [ "f", "f" ], run = 'plugin fzf', desc = "Search for file" },
+]

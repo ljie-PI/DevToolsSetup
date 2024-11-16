@@ -1,0 +1,13 @@
+[manager]
+ratio = [2, 3, 5]
+sort_by = "alphabetical"
+sort_dir_first = true
+linemode = "permissions"
+show_hidden = true
+show_symlink = true
+
+[opener]
+edit = [
+	{ run = "hx $@", block = true, for = "unix" },
+	{ run = "hx %*", block = true, for = "windows" },
+]
