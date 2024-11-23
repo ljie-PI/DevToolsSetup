@@ -7,19 +7,6 @@ function check_brew() {
     echo "Please install brew from https://brew.sh or https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/"
     exit 1
   fi
-
-  echo "brew is installed!"
-}
-
-function install_dependencies() {
-    brew install zsh tmux git \
-        neovim helix \
-        llvm rust-analyzer lua-language-server bash-language-server python-lsp-server typescript-language-server \
-        yazi ffmpegthumbnailer sevenzip jq poppler fd ripgrep fzf zoxide imagemagick \
-        font-symbols-only-nerd-font
-    if [ $? -ne 0 ]; then
-        exit 1
-    fi
 }
 
 function setup_zsh() {
@@ -28,14 +15,12 @@ function setup_zsh() {
         return
     fi
     echo "setting up zsh..."
-
+    brew install zsh git
     sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
     git clone https://github.com/zsh-users/zsh-autosuggestions \
         ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
         ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
         ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 
@@ -52,6 +37,7 @@ function setup_tmux() {
         return
     fi
     echo "setting up tmux..."
+    brew install tmux
 
     cp tmux/tmux.conf ~/.tmux.conf
     echo "tmux has been setup successfully"
@@ -63,6 +49,7 @@ function setup_yazi() {
         return
     fi
     echo "setting up yazi..."
+    brew install yazi ffmpegthumbnailer sevenzip jq poppler fd ripgrep fzf zoxide imagemagick
 
     # Create yazi config directory if it doesn't exist
     if [ ! -d ~/.config/yazi ]; then
@@ -81,6 +68,9 @@ function setup_neovim() {
         return
     fi
     echo "setting up neovim..."
+    brew install neovim llvm rust-analyzer lua-language-server \
+        bash-language-server python-lsp-server typescript-language-server \
+        font-symbols-only-nerd-font
 
     # Create neovim config directory if it doesn't exist
     mkdir -p ~/.config/nvim
@@ -96,6 +86,9 @@ function setup_helix() {
         return
     fi
     echo "setting up helix..."
+    brew install helix llvm rust-analyzer lua-language-server \
+        bash-language-server python-lsp-server typescript-language-server \
+        font-symbols-only-nerd-font
 
     # Create helix config directory if it doesn't exist
     mkdir -p ~/.config/helix
@@ -111,6 +104,7 @@ function setup_wezterm() {
         return
     fi
     echo "setting up wezterm..."
+    brew install font-symbols-only-nerd-font
 
     # Create wezterm config directory if it doesn't exist
     mkdir -p ~/.config/wezterm
