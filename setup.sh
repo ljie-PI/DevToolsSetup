@@ -71,6 +71,21 @@ function setup_yazi() {
     echo "yazi has been setup successfully"
 }
 
+function setup_fonts() {
+    echo "Setting up fonts..."
+
+    cur_dir=$(pwd)
+    cd ./fonts || { echo "Error: fonts directory not found"; return 1; }
+    if [ -x "./install.sh" ]; then
+        # Execute the install.sh script
+        ./install.sh
+    else
+        echo "Error: install.sh not found or not executable in fonts directory"
+    fi
+    cd "$cur_dir"
+    echo "fonts has been setup successfully"
+}
+
 function setup_neovim() {
     if [ -d ~/.config/nvim ]; then
         echo "neovim has already been setup"
@@ -121,19 +136,19 @@ function setup_wezterm() {
 
 function setup() {
     if [ $# -eq 0 ]; then
-        echo "Please provide at least one parameter: zsh, tmux, yazi, neovim/nvim, helix, wezterm, or all"
+        echo "Please provide at least one parameter: zsh, tmux, yazi, fonts, neovim/nvim, helix, wezterm, or all"
         exit 1
     fi
 
     # First validate all parameters
     for param in "$@"; do
         case $param in
-            "all"|"zsh"|"tmux"|"yazi"|"neovim"|"nvim"|"helix"|"wezterm")
+            "all"|"zsh"|"tmux"|"yazi"|"fonts"|"neovim"|"nvim"|"helix"|"wezterm")
                 continue
                 ;;
             *)
                 echo "Invalid parameter: $param"
-                echo "Valid parameters are: zsh, tmux, yazi, neovim/nvim, helix, wezterm, all"
+                echo "Valid parameters are: zsh, tmux, yazi, fonts, neovim/nvim, helix, wezterm, all"
                 exit 1
                 ;;
         esac
@@ -146,6 +161,7 @@ function setup() {
                 setup_zsh
                 setup_tmux
                 setup_yazi
+                setup_fonts
                 setup_neovim
                 setup_helix
                 setup_wezterm
@@ -162,6 +178,9 @@ function setup() {
                 ;;
             "yazi")
                 setup_yazi
+                ;;
+            "fonts")
+                setup_fonts
                 ;;
             "neovim"|"nvim")
                 setup_neovim
