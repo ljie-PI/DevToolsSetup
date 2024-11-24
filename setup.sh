@@ -16,7 +16,16 @@ function setup_zsh() {
     fi
     echo "setting up zsh..."
     brew install zsh git
-    sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+    # install ohmyzsh from mirrors
+    cur_dir=$(pwd)
+    cd /tmp
+    git clone https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git
+    cd ohmyzsh/tools
+    REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/ohmyzsh.git RUNZSH=no sh install.sh
+    cd $cur_dir
+    rm -rf /tmp/ohmyzsh
+
     git clone https://github.com/zsh-users/zsh-autosuggestions \
         ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
@@ -69,8 +78,7 @@ function setup_neovim() {
     fi
     echo "setting up neovim..."
     brew install neovim llvm rust-analyzer lua-language-server \
-        bash-language-server python-lsp-server typescript-language-server \
-        font-symbols-only-nerd-font
+        bash-language-server python-lsp-server typescript-language-server
 
     # Create neovim config directory if it doesn't exist
     mkdir -p ~/.config/nvim
@@ -87,8 +95,7 @@ function setup_helix() {
     fi
     echo "setting up helix..."
     brew install helix llvm rust-analyzer lua-language-server \
-        bash-language-server python-lsp-server typescript-language-server \
-        font-symbols-only-nerd-font
+        bash-language-server python-lsp-server typescript-language-server
 
     # Create helix config directory if it doesn't exist
     mkdir -p ~/.config/helix
@@ -104,8 +111,6 @@ function setup_wezterm() {
         return
     fi
     echo "setting up wezterm..."
-    brew install font-symbols-only-nerd-font
-
     # Create wezterm config directory if it doesn't exist
     mkdir -p ~/.config/wezterm
 
@@ -172,9 +177,6 @@ function setup() {
 function main() {
     # Check if brew is installed
     check_brew
-
-    # Install dependencies
-    install_dependencies
 
     # If no parameters provided, use 'all'
     if [ $# -eq 0 ]; then

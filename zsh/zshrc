@@ -94,16 +94,11 @@ alias cdd="cd ~/Downloads"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export HOME_LOCAL="/home/$USER/.local"
 export PATH="$HOME_LOCAL/bin:$PATH"
-# Java env
-export JAVA_HOME="$HOME_LOCAL/graalvm"
-export PATH="$M2_HOME/bin:$GRADLE_HOME/bin:$JAVA_HOME/bin:$PATH"
-# Rust env
-export RUSTUP_HOME="$HOME_LOCAL/rust/rustup"
-export CARGO_HOME="$HOME_LOCAL/rust/cargo"
-export PATH="$CARGO_HOME/bin:$PATH"
-# Python env
-export CONDA_BASE="$HOME_LOCAL/miniconda"
-export PATH="$CONDA_BASE/bin:$PATH"
+# Homebrew
+export BREW_HOME="/home/linuxbrew/.linuxbrew"
+if [ -d "$BREW_HOME" ]; then
+  export PATH="$BREW_HOME/bin:$PATH"
+fi
 
 # Other env variables
 export COLORTERM="truecolor"
