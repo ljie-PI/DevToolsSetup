@@ -1,5 +1,5 @@
 local nmappings = {
-  {"<leader>/", "<CMD>lua require(\"Comment.api\").toggle.linewise.current()<CR>", desc = "Comment Current Line(s)", icon = nil },
+  { "<leader>/", "<CMD>lua require(\"Comment.api\").toggle.linewise.current()<CR>", desc = "Comment Current Line(s)", icon = nil, mode = "n" },
 
   {
     { "<leader>b", group = "Buffer", icon = nil },
@@ -10,7 +10,9 @@ local nmappings = {
     { "<leader>bl", "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<CR>", desc = "List Buffers" },
   },
 
-  {"<leader>D", "<CMD>lua vim.diagnostic.open_float()<CR>", desc = "Diagnose",  icon = nil },
+  { "<leader>a", group = "AI Assistant", icon = nil },
+
+  { "<leader>D", "<CMD>lua vim.diagnostic.open_float()<CR>", desc = "Diagnose",  icon = nil },
 
   {
     { "<leader>d", group = "Debug", icon = nil },
@@ -25,7 +27,7 @@ local nmappings = {
     { "<Leader>dx", "<CMD>lua require('dap').terminate()<CR>", desc = "Terminate Debug" },
   },
 
-  {"<leader>F", "<CMD>lua vim.lsp.buf.format()<CR>", desc = "Format", icon = nil },
+  { "<leader>F", "<CMD>lua vim.lsp.buf.format()<CR>", desc = "Format", icon = nil },
 
   {
     { "<leader>f", group = "Find", icon = nil },
@@ -43,7 +45,7 @@ local nmappings = {
     { "<leader>gr", "<CMD>lua vim.lsp.buf.references()<CR>", desc = "Go to References" },
   },
 
-  {"<leader>L", "<CMD>Lazy<CR>", desc = "Show Lazy UI", icon = nil },
+  {" <leader>L", "<CMD>Lazy<CR>", desc = "Show Lazy UI", icon = nil },
 
   {
     { "<leader>l", group = "LSP", icon = nil },
@@ -62,7 +64,7 @@ local nmappings = {
     { "<leader>lw", "<CMD>Telescope lsp_workspace_diagnostics<CR>", desc = "Workspace Diagnostics" },
   },
 
-  {"<leader>m", "<CMD>HopWord<CR>", desc = "Move to", icon = nil },
+  {" <leader>m", "<CMD>HopWord<CR>", desc = "Move to", icon = nil },
 
   {
     { "<leader>p", group = "Packer", icon = nil },
@@ -82,11 +84,19 @@ local nmappings = {
 }
 
 local vmappings = {
-  { "<leader>/", "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", desc = "Comment Lines", mode = "v" },
+  { " <leader>/", "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", desc = "Comment Lines", mode = "v" },
 
-  { "<Leader>de", "<CMD>lua require('dapui').eval()<CR>", desc = "Evaluate an Expression", mode = "v" },
+  { "<leader>a", group = "AI Assistant", icon = nil, mode = "v" },
 
-  { "<leader>ft", "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", desc = "Search Current Selection", mode = "v" },
+  {
+    { "<leader>d", group = "Debug", icon = nil, mode = "v" },
+    { "<leader>de", "<CMD>lua require('dapui').eval()<CR>", desc = "Evaluate an Expression", mode = "v" },
+  },
+
+  {
+    { "<leader>f", group = "Find", icon = nil, mode = "v" },
+    { "<leader>ft", "y<ESC>:Telescope live_grep default_text=<c-r>0<CR>", desc = "Search Current Selection", mode = "v" },
+  },
 }
 
 local whichkey_opts = {

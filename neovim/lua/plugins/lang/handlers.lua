@@ -1,4 +1,4 @@
-local conf_util = require("utils")
+local nvim_util = require("utils")
 
 local M = {}
 
@@ -15,7 +15,7 @@ local function lsp_navi_impl(err, result, ctx, orig_handlers)
   end
 
   -- Normalize the buffer name on Windows, so that other plugins (e.g. nvim-tree, telescope) can work better
-  if conf_util.is_win() then
+  if nvim_util.is_win() then
     local uri_key = "targetUri"
     if ctx.method == "textDocument/references" then
       uri_key = "uri"
