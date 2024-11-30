@@ -43,7 +43,7 @@ local catppuccin_opts = {
 
 return {
   {
-    "oneslash/helix-nvim",
+    "ljie-PI/helix-nvim",
     lazy = true,
     name = "helix",
   },
