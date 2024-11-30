@@ -4,7 +4,7 @@ local config = {}
 
 config.font = wezterm.font 'Hack Nerd Font Mono'
 config.font_size = 12.0
-config.color_scheme = 'Tokyo Night Storm'
+config.color_scheme = 'Solarized (dark) (terminal.sexy)'
 
 config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
