@@ -1,4 +1,6 @@
-local codeium_opts = {
+local M = {}
+
+M.opts = {
   enable_cmp_source = false,
   virtual_text = {
     enabled = true,
@@ -15,12 +17,4 @@ local codeium_opts = {
   }
 }
 
-return {
-  {
-    "Exafunction/codeium.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    cmd = "Codeium Auth",
-    opts = codeium_opts,
-  },
-}
+return M
