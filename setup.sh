@@ -92,7 +92,7 @@ function setup_neovim() {
         return
     fi
     echo "setting up neovim..."
-    brew install neovim llvm rust-analyzer lua-language-server \
+    brew install neovim cmake ripgrep llvm rust-analyzer lua-language-server \
         bash-language-server python-lsp-server typescript-language-server
 
     # Create neovim config directory if it doesn't exist

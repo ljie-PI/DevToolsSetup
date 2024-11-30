@@ -1,8 +1,6 @@
-local M = {}
+local conf_util = require("utils")
 
-local function is_windows()
-  return vim.fn.has("win32") == 1 or vim.fn.has("win32unix") == 1
-end
+local M = {}
 
 local function win_norm_uri(uri)
   local new_uri = uri:gsub("file:///(%l%%3A)", function(drive)
@@ -17,7 +15,7 @@ local function lsp_navi_impl(err, result, ctx, orig_handlers)
   end
 
   -- Normalize the buffer name on Windows, so that other plugins (e.g. nvim-tree, telescope) can work better
-  if is_windows then
+  if conf_util.is_win() then
     local uri_key = "targetUri"
     if ctx.method == "textDocument/references" then
       uri_key = "uri"
@@ -35,7 +33,6 @@ local function lsp_navi_handler(orig_navi_handlers)
   end
 end
 
--- TODO: backfill this to template
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -90,30 +87,5 @@ M.setup = function()
     vim.lsp.handlers[method] = lsp_navi_handler(orig_navi_handlers)
   end
 end
-
--- local function lsp_highlight_document(client)
---   -- Set autocommands conditional on server_capabilities
---   if client.server_capabilities.documentHighlight then
---     vim.api.nvim_exec(
---       [[
---       augroup lsp_document_highlight
---         autocmd! * <buffer>
---         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
---         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
---       augroup END
---     ]],
---       false
---     )
---   end
--- end
-
--- M.on_attach = function(client, bufnr)
---   lsp_highlight_document(client)
--- end
-
--- local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
--- if status_ok then
---   M.capabilities = cmp_nvim_lsp.default_capabilities()
--- end
 
 return M

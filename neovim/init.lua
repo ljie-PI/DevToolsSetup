@@ -1,16 +1,10 @@
-require "configs.options"
-require "configs.keymaps"
-require "configs.plugins"
-require "configs.nvim-tree"
-require "configs.telescope"
-require "configs.bufferline"
-require "configs.lualine"
-require "configs.autopairs"
-require "configs.comment"
-require "configs.hop"
-require "configs.colorscheme"
-require "configs.completion"
-require "configs.lsp"
-require "configs.dap"
-require "configs.which-key"
-require "configs.codeium"
+if vim.fn.has("nvim-0.10.0") == 0 then
+  vim.api.nvim_echo({
+    { "Please check if you have Neovim >= 0.10.0\n", "ErrorMsg" },
+  }, true, {})
+  vim.fn.getchar()
+  vim.cmd([[quit]])
+  return {}
+end
+
+require("configs")

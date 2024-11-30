@@ -40,7 +40,7 @@ exit /b 0
 
 :: Function to setup all components
 :setup_all
-call :install_packages neovim helix llvm rust-analyzer lua-language-server yazi 7zip jq poppler fd ripgrep fzf zoxide ghostscript imagemagick
+call :install_packages neovim helix cmake llvm rust-analyzer lua-language-server yazi 7zip jq poppler fd ripgrep fzf zoxide ghostscript imagemagick
 if %ERRORLEVEL% NEQ 0 exit /b 1
 call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
 if %ERRORLEVEL% NEQ 0 exit /b 1
@@ -58,7 +58,7 @@ if exist "%LOCALAPPDATA%\nvim" (
     echo neovim has already been setup
 ) else (
     echo setting up neovim...
-    call :install_packages neovim llvm rust-analyzer lua-language-server
+    call :install_packages neovim cmake ripgrep llvm rust-analyzer lua-language-server
     if %ERRORLEVEL% NEQ 0 exit /b 1
     call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
     if %ERRORLEVEL% NEQ 0 exit /b 1

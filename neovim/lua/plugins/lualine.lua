@@ -1,8 +1,3 @@
-local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
-  return
-end
-
 local hide_in_width = function()
   return vim.fn.winwidth(0) > 80
 end
@@ -53,15 +48,26 @@ local spaces = function()
 end
 
 local codeium_status = function()
-  return "codeium: " .. vim.fn["codeium#GetStatusString"]()
+  local status = require("codeium.virtual_text").status()
+  local prefix = "Codeium: "
+  if status.state == "idle" then
+      return prefix .. "-"
+    end
+  if status.state == "waiting" then
+    return prefix .. "*"
+    end
+  if status.state == "completions" and status.total > 0 then
+        return prefix .. string.format('%d/%d', status.current, status.total)
+    end
+  return prefix .. "0"
 end
 
-lualine.setup {
+local lualine_opts = {
   options = {
     icons_enabled = true,
     theme = "auto",
-    section_separators = { left = '', right = '' },
-    component_separators = { left = '|', right = '|' },
+    section_separators = { left = "", right = "" },
+    component_separators = { left = "|", right = "|" },
     disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
     always_divide_middle = true,
   },
@@ -69,8 +75,8 @@ lualine.setup {
     lualine_a = {mode},
     lualine_b = {branch, diff, diagnostics},
     lualine_c = {codeium_status},
-    lualine_x = {spaces, 'encoding', 'fileformat', filetype},
-    lualine_y = {'progress'},
+    lualine_x = {spaces, "encoding", "fileformat", filetype},
+    lualine_y = {"progress"},
     lualine_z = {location}
   },
   inactive_sections = {
@@ -85,3 +91,15 @@ lualine.setup {
   extensions = {},
 }
 
+return {
+  {
+    "nvim-lualine/lualine.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "Exafunction/codeium.nvim",
+    },
+    opts = lualine_opts,
+  }
+}
