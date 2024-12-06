@@ -16,12 +16,18 @@ local function lsp_navi_impl(err, result, ctx, orig_handlers)
 
   -- Normalize the buffer name on Windows, so that other plugins (e.g. nvim-tree, telescope) can work better
   if nvim_util.is_win() then
-    local uri_key = "targetUri"
-    if ctx.method == "textDocument/references" then
-      uri_key = "uri"
-    end
+    local uri_keys = {"targetUri", "uri"}
     for _, res_i in ipairs(result) do
-      res_i[uri_key] = win_norm_uri(res_i[uri_key])
+      local uri_key = nil
+      for _, key in ipairs(uri_keys) do
+        if res_i[key] ~= nil then
+          uri_key = key
+          break
+        end
+      end
+      if uri_key ~= nil then
+        res_i[uri_key] = win_norm_uri(res_i[uri_key])
+      end
     end
   end
   orig_handlers[ctx.method](err, result, ctx)
