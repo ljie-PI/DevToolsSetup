@@ -1,3 +1,5 @@
+nvim_util = require("utils")
+
 local function customized_on_attach(bufnr)
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -70,7 +72,7 @@ local nvimtree_opts = {
 return {
   {
     "nvim-tree/nvim-tree.lua",
-    lazy = true,
+    lazy = not nvim_util.is_opening_dirs(),
     event = "VeryLazy",
     cmd = "NvimTreeToggle",
     dependencies = {

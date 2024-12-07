@@ -1,3 +1,5 @@
+local nvim_util = require("utils")
+
 local function null_ls_setup()
   local null_ls = require("null-ls")
   local formatting = null_ls.builtins.formatting
@@ -59,7 +61,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = true,
+    lazy = not nvim_util.is_opening_files(),
     build = ":TSUpdate",
     event = { "LazyFile", "VeryLazy" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
