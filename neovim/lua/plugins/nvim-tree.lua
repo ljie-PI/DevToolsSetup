@@ -1,4 +1,24 @@
-nvim_util = require("utils")
+local nvim_util = require("utils")
+
+local init_width = "18%"
+local view_width = init_width
+
+local function set_view_width()
+  local windows = vim.api.nvim_list_wins()
+  local act_wins = windows and #windows or 0
+  for _, winnr in ipairs(windows) do
+    local bufnr = vim.api.nvim_win_get_buf(winnr)
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+    if bufname:match("NvimTree_1$") and act_wins > 1 then
+      ---@diagnostic disable-next-line
+      view_width = vim.api.nvim_win_get_width(winnr)
+    end
+  end
+end
+
+local function get_view_width()
+  return view_width
+end
 
 local function customized_on_attach(bufnr)
   local function opts(desc)
@@ -13,6 +33,7 @@ local function customized_on_attach(bufnr)
   vim.keymap.set("n", "<CR>", nvim_tree_api.node.open.edit, opts("Open"))
   vim.keymap.set("n", "o", nvim_tree_api.node.open.edit, opts("Open"))
   vim.keymap.set("n", "v", nvim_tree_api.node.open.vertical, opts("Open: Vertical Split"))
+  vim.keymap.set("n", "<C-f>", set_view_width, opts("Fix Width of Tree View"))
 end
 
 local nvimtree_opts = {
@@ -59,12 +80,8 @@ local nvimtree_opts = {
     },
   },
   view = {
-    width = {
-      min = 30,
-      max = "20%",
-    },
+    width = get_view_width,
     side = "left",
-    adaptive_size = true,
   },
   on_attach = customized_on_attach,
 }
