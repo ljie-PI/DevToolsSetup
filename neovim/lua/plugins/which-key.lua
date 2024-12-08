@@ -78,6 +78,7 @@ local nmappings = {
   {
     { "<leader>w", group = "Window", icon = nil },
     { "<leader>we", "<CMD>NvimTreeToggle<CR>", desc = "File Explorer" },
+    { "<leader>wo", "<CMD>Outline<CR>", desc = "Outline Symbols" },
     { "<leader>wh", "<CMD>split<CR>", desc = "Horizontal Split" },
     { "<leader>wv", "<CMD>vsplit<CR>", desc = "Vertical Split" },
   },
