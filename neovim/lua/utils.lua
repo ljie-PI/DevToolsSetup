@@ -1,6 +1,9 @@
 local function path_type_matches(paths, target_type)
   for _, path in ipairs(paths) do
     local stat = vim.loop.fs_stat(path)
+    if stat == nil then
+      return false
+    end
     if stat.type ~= target_type then
       return false
     end
