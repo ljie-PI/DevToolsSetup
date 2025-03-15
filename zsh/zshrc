@@ -77,7 +77,6 @@ alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="vi ~/.oh-my-zsh"
 alias zshreload="source ~/.zshrc"
 
-alias hx="helix"
 alias vi="nvim"
 
 alias tmon="tmux set mouse on"
