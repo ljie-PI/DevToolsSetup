@@ -29,6 +29,9 @@ require("lazy").setup({
     -- import your plugins
     { import = "plugins" },
   },
+  git = {
+    timeout = 300,
+  },
   -- automatically check for plugin updates
   checker = { enabled = false },
 })
