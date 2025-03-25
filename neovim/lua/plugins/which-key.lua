@@ -27,7 +27,7 @@ local nmappings = {
     { "<Leader>dx", "<CMD>lua require('dap').terminate()<CR>", desc = "Terminate Debug" },
   },
 
-  {"<leader>F", "<CMD>lua vim.lsp.buf.format()<CR>", desc = "Format", icon = nil },
+  {"<leader>F", "<CMD>lua vim.lsp.buf.format({ timeout_ms = 5000 })<CR>", desc = "Format", icon = nil },
 
   {
     { "<leader>f", group = "Find", icon = nil },
@@ -51,7 +51,7 @@ local nmappings = {
     { "<leader>l", group = "LSP", icon = nil },
     { "<leader>la", "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code Action" },
     { "<leader>ld", "<CMD>Telescope lsp_document_diagnostics<CR>", desc = "Document Diagnostics" },
-    { "<leader>lf", "<CMD>lua vim.lsp.buf.formatting()<CR>", desc = "Format" },
+    { "<leader>lf", "<CMD>lua vim.lsp.buf.format({ timeout_ms = 5000 })<CR>", desc = "Format" },
     { "<leader>lI", "<CMD>LspInstallInfo<CR>", desc = "Installer Info" },
     { "<leader>li", "<CMD>LspInfo<CR>", desc = "Info" },
     { "<leader>lj", "<CMD>lua vim.lsp.diagnostic.goto_next()<CR>", desc = "Next Diagnostic" },
