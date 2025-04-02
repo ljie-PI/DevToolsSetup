@@ -3,7 +3,6 @@ local nvim_util = require("utils")
 local function null_ls_setup()
   local null_ls = require("null-ls")
   local formatting = null_ls.builtins.formatting
-  local diagnostics = null_ls.builtins.diagnostics
 
   null_ls.setup {
     debug = false,
@@ -18,8 +17,6 @@ local function null_ls_setup()
       formatting.prettier.with({
         extra_filetypes = { "toml" }
       }),
-      -- Add diagnostics to help identify issues
-      diagnostics.prettier
     }
   }
 end
