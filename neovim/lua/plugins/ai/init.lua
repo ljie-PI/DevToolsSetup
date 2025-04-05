@@ -20,18 +20,18 @@ return {
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      {
-        "zbirenbaum/copilot.lua",
-        opts = {
-          -- Only use copilot.lua to support avante
-          panel = {
-            enabled = false,
-          },
-          suggestion = {
-            enabled = false,
-          },
-        },
-      },
+      -- {
+      --   "zbirenbaum/copilot.lua",
+      --   opts = {
+      --     -- Only use copilot.lua to support avante
+      --     panel = {
+      --       enabled = false,
+      --     },
+      --     suggestion = {
+      --       enabled = false,
+      --     },
+      --   },
+      -- },
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",

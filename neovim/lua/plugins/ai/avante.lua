@@ -6,18 +6,18 @@ M.opts = {
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
   -- provider = "azure",
   -- auto_suggestions_provider = nil,
-  -- azure = {
-  --   endpoint = "https://ljie-gpt-demo.openai.azure.com",
-  --   deployment = "gpt-4o",
-  --   api_version = "2024-08-01-preview",
-  --   timeout = 30000,
-  --   temperature = 0,
-  --   max_tokens = 4096,
-  -- },
-  provider = "copilot",
-  copilot = {
-    model = "claude-3.5-sonnet",
+  azure = {
+    endpoint = "https://ljie-gpt-demo.openai.azure.com",
+    deployment = "gpt-4o",
+    api_version = "2024-08-01-preview",
+    timeout = 30000,
+    temperature = 0,
+    max_tokens = 4096,
   },
+  -- provider = "copilot",
+  -- copilot = {
+  --   model = "claude-3.5-sonnet",
+  -- },
 
   ---Specify the special dual_boost mode
   ---1. enabled: Whether to enable dual_boost mode. Default to false.
