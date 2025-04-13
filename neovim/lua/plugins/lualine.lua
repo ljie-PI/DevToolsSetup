@@ -44,22 +44,33 @@ local location = {
 }
 
 local spaces = function()
-  return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+  return "spaces: " .. vim.api.nvim_get_option_value("shiftwidth", { buf = 0 })
 end
 
-local codeium_status = function()
-  local status = require("codeium.virtual_text").status()
-  local prefix = "Codeium: "
-  if status.state == "idle" then
-      return prefix .. "-"
+-- GitHub Copilot status
+local copilot_status = function()
+  local ok, copilot = pcall(require, "copilot.api")
+  if ok and copilot.is_ready and copilot.is_ready() then
+    local status_data = copilot.status.data
+    if status_data and status_data.status then
+      if status_data.status == "InProgress" then
+        return " Copilot"
+      elseif status_data.status == "Error" then
+        return " Copilot"
+      else
+        return " Copilot"
+      end
+    else
+      return " Copilot"
     end
-  if status.state == "waiting" then
-    return prefix .. "*"
+  else
+    local clients = vim.lsp.get_clients({ name = "copilot" })
+    if #clients > 0 then
+      return " Copilot"
     end
-  if status.state == "completions" and status.total > 0 then
-        return prefix .. string.format('%d/%d', status.current, status.total)
-    end
-  return prefix .. "0"
+  end
+
+  return " Copilot"
 end
 
 local lualine_opts = {
@@ -72,12 +83,12 @@ local lualine_opts = {
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = {mode},
-    lualine_b = {branch, diff, diagnostics},
-    lualine_c = {codeium_status},
-    lualine_x = {spaces, "encoding", "fileformat", filetype},
-    lualine_y = {"progress"},
-    lualine_z = {location}
+    lualine_a = { mode },
+    lualine_b = { branch, diff, diagnostics },
+    lualine_c = { copilot_status },
+    lualine_x = { spaces, "encoding", "fileformat", filetype },
+    lualine_y = { "progress" },
+    lualine_z = { location }
   },
   inactive_sections = {
     lualine_a = {},
@@ -98,7 +109,6 @@ return {
     event = "VeryLazy",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      "Exafunction/codeium.nvim",
     },
     opts = lualine_opts,
   }

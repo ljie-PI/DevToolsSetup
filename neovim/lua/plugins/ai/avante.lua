@@ -6,18 +6,16 @@ M.opts = {
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
   -- provider = "azure",
   -- auto_suggestions_provider = nil,
-  azure = {
-    endpoint = "https://ljie-gpt-demo.openai.azure.com",
-    deployment = "gpt-4o",
-    api_version = "2024-08-01-preview",
-    timeout = 30000,
-    temperature = 0,
-    max_tokens = 4096,
-  },
-  -- provider = "copilot",
-  -- copilot = {
-  --   model = "claude-3.5-sonnet",
+  -- azure = {
+  --   endpoint = "https://ljie-gpt-demo.openai.azure.com",
+  --   deployment = "gpt-4o",
+  --   api_version = "2024-08-01-preview",
+  --   timeout = 30000,
   -- },
+  provider = "copilot",
+  copilot = {
+    model = "claude-3.7-sonnet",
+  },
 
   ---Specify the special dual_boost mode
   ---1. enabled: Whether to enable dual_boost mode. Default to false.
@@ -46,8 +44,8 @@ M.opts = {
       all_theirs = "ca",
       both = "cb",
       cursor = "cc",
-      next = "]x",
-      prev = "[x",
+      next = "c]",
+      prev = "c[",
     },
     suggestion = {
       accept = "<C-f>",
@@ -61,7 +59,7 @@ M.opts = {
     },
     submit = {
       normal = "<CR>",
-      insert = "<C-f>",
+      insert = "<C-g>",
     },
     sidebar = {
       apply_all = "A",
@@ -75,7 +73,7 @@ M.opts = {
     ---@type "right" | "left" | "top" | "bottom"
     position = "right",
     wrap = true,
-    width = 30, -- % based on available width
+    width = 30,       -- % based on available width
     sidebar_header = {
       enabled = true, -- true, false to enable/disable the header
       ---@type "left" | "center" | "right"
@@ -91,7 +89,7 @@ M.opts = {
       start_insert = true, -- Start insert mode when opening the edit window
     },
     ask = {
-      floating = false, -- Open the 'AvanteAsk' prompt in a floating window
+      floating = false,    -- Open the 'AvanteAsk' prompt in a floating window
       start_insert = true, -- Start insert mode when opening the ask window
       border = "rounded",
       ---@type "ours" | "theirs"
@@ -108,8 +106,34 @@ M.opts = {
   },
 }
 
+function M.setup(_, opts)
+  local avante_ok, avante = pcall(require, "avante")
+  if not avante_ok then
+    return
+  end
+
+  local orig_setup = avante.setup
+  local ok, err = pcall(orig_setup, opts)
+  if ok then
+    return
+  end
+
+  if type(err) == "string"
+      and err:match("You must setup copilot with either copilot.lua or copilot.vim")
+  then
+    vim.notify(
+      "Avante Copilot Provider couldn't detect Copilot configuration.\n" ..
+      "Please install and configure copilot.lua or copilot.vim first, then run :Copilot auth",
+      vim.log.levels.WARN
+    )
+    return
+  end
+
+  error(err)
+end
+
 function M.build_cmd()
-  if nvim_util.is_win() then  
+  if nvim_util.is_win() then
     return "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
   else
     return "make BUILD_FROM_SOURCE=true"

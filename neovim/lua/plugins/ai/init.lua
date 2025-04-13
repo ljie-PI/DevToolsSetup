@@ -1,37 +1,31 @@
-local codeium = require("plugins.ai.codeium")
 local avante = require("plugins.ai.avante")
+local ghcp = require("plugins.ai.ghcp")
 
 return {
   {
-    "Exafunction/codeium.nvim",
+    "zbirenbaum/copilot.lua",
     lazy = true,
-    event = "VeryLazy",
-    cmd = "Codeium Auth",
-    opts = codeium.opts,
+    event = { "VeryLazy", "InsertEnter" },
+    opts = ghcp.opts,
+    config = function(_, opts)
+      require("copilot").setup(opts)
+    end,
   },
 
   {
-    "ljie-PI/avante.nvim",
+    "yetone/avante.nvim",
     lazy = true,
     event = "VeryLazy",
     build = avante.build_cmd(),
-    opts = avante.opts,
     dependencies = {
+      "nvim-treesitter/nvim-treesitter",
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      -- {
-      --   "zbirenbaum/copilot.lua",
-      --   opts = {
-      --     -- Only use copilot.lua to support avante
-      --     panel = {
-      --       enabled = false,
-      --     },
-      --     suggestion = {
-      --       enabled = false,
-      --     },
-      --   },
-      -- },
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MeanderingProgrammer/render-markdown.nvim",
+      "zbirenbaum/copilot.lua",
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
@@ -48,14 +42,8 @@ return {
           },
         },
       },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
     },
+    opts = avante.opts,
+    config = avante.setup
   },
 }
