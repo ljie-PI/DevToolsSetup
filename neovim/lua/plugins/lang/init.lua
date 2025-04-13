@@ -21,7 +21,7 @@ local function null_ls_setup()
   }
 end
 
-local treesister_opts = {
+local treesitter_opts = {
   highlight = { enable = true },
   indent = { enable = true },
   ensure_installed = {
@@ -34,12 +34,12 @@ local treesister_opts = {
     "json",
     "jsonc",
     "lua",
-    "markdown",
-    "markdown_inline",
     "python",
     "rust",
     "tsx",
     "typescript",
+    "markdown",
+    "markdown_inline",
   },
   textobjects = {
     move = {
@@ -66,10 +66,24 @@ return {
     event = { "LazyFile", "VeryLazy" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts_extend = { "ensure_installed" },
-    opts = treesister_opts,
+    opts = treesitter_opts,
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,
+  },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+    opts = {
+      file_types = { "markdown", "Avante" },
+    },
+    ft = { "markdown", "Avante" },
   },
 
   {
