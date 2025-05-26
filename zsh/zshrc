@@ -91,10 +91,14 @@ alias cdd="cd ~/Downloads"
 
 # Set up $PATH
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export HOME_LOCAL="/home/$USER/.local"
+export HOME_LOCAL="$HOME/.local"
 export PATH="$HOME_LOCAL/bin:$PATH"
 # Homebrew
-export BREW_HOME="/home/linuxbrew/.linuxbrew"
+if [[ "$(uname)" == "Linux" ]]; then
+  export BREW_HOME="/home/linuxbrew/.linuxbrew"
+else
+  export BREW_HOME="/opt/homebrew"
+fi
 if [ -d "$BREW_HOME" ]; then
   export PATH="$BREW_HOME/bin:$PATH"
 fi

@@ -12,8 +12,8 @@ if test "$(uname)" = "Darwin" ; then
 else
   # Linux
   font_dir="$HOME/.local/share/fonts"
-  mkdir -p $font_dir
 fi
+mkdir -p $font_dir
 
 # Copy all fonts to user fonts directory
 echo "Copying fonts..."
