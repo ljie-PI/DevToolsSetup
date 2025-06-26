@@ -4,7 +4,7 @@ local config = {}
 
 config.font = wezterm.font 'Hack Nerd Font Mono'
 config.font_size = 12.0
-config.color_scheme = 'Solarized (dark) (terminal.sexy)'
+config.color_scheme = 'Tokyo Night Storm'
 
 config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
@@ -17,7 +17,7 @@ config.window_padding = {
   bottom = 1
 }
 
-config.window_background_opacity = 0.9
+config.window_background_opacity = 1.0
 config.text_background_opacity = 1.0
 
 if not string.match(wezterm.target_triple, "darwin") then
