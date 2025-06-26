@@ -13,8 +13,10 @@ M.opts = {
   --   timeout = 30000,
   -- },
   provider = "copilot",
-  copilot = {
-    model = "claude-3.7-sonnet",
+  providers = {
+    copilot = {
+      model = "claude-3.7-sonnet",
+    },
   },
 
   ---Specify the special dual_boost mode
