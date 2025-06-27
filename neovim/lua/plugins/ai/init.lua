@@ -5,7 +5,8 @@ return {
   {
     "zbirenbaum/copilot.lua",
     lazy = true,
-    event = { "VeryLazy", "InsertEnter" },
+    event = "InsertEnter",
+    cmd = { "Copilot", "Copilot auth", "Copilot status" },
     opts = ghcp.opts,
     config = function(_, opts)
       require("copilot").setup(opts)
@@ -14,8 +15,7 @@ return {
 
   {
     "yetone/avante.nvim",
-    lazy = true,
-    event = "VeryLazy",
+    event = "LazyFile",
     build = avante.build_cmd(),
     dependencies = {
       "nvim-treesitter/nvim-treesitter",

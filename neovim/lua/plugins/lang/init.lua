@@ -75,7 +75,7 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     lazy = true,
-    event = "VeryLazy",
+    ft = { "markdown", "Avante" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons"
@@ -83,7 +83,6 @@ return {
     opts = {
       file_types = { "markdown", "Avante" },
     },
-    ft = { "markdown", "Avante" },
   },
 
   {
