@@ -1,5 +1,5 @@
 local tokyonight_opts = {
-  style = "moon",
+  style = "storm",
 }
 
 local catppuccin_opts = {
