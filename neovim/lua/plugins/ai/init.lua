@@ -15,7 +15,7 @@ return {
 
   {
     "yetone/avante.nvim",
-    event = "LazyFile",
+    event = "VeryLazy",
     build = avante.build_cmd(),
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
