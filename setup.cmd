@@ -36,7 +36,7 @@ exit /b 0
 
 :: Function to setup all components
 :setup_all
-    call :install_packages neovim helix gzip cmake llvm rust-analyzer lua-language-server yazi 7zip jq poppler fd ripgrep fzf zoxide ghostscript imagemagik
+    call :install_packages neovim helix gzip cmake llvm rust-analyzer lua-language-server yazi 7zip jq poppler fd ripgrep fzf zoxide ghostscript imagemagick
     if %ERRORLEVEL% NEQ 0 exit /b 1
 
     call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
