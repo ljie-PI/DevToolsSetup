@@ -62,7 +62,7 @@ return {
     "nvim-telescope/telescope-fzf-native.nvim",
     lazy = true,
     build = (build_cmd ~= "cmake") and "make"
-      or "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      or "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 && cmake --build build --config Release && cmake --install build --prefix build",
     enabled = build_cmd ~= nil,
   },
   {
