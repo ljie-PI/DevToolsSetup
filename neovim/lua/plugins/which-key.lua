@@ -27,8 +27,6 @@ local nmappings = {
     { "<Leader>dx", "<CMD>lua require('dap').terminate()<CR>", desc = "Terminate Debug" },
   },
 
-  {"<leader>F", "<CMD>lua vim.lsp.buf.format({ timeout_ms = 5000 })<CR>", desc = "Format", icon = nil },
-
   {
     { "<leader>f", group = "Find", icon = nil },
     { "<leader>fb", "<CMD>lua require('telescope.builtin').buffers()<CR>", desc = "Find Buffer" },
