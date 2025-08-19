@@ -16,7 +16,7 @@ local diff = {
   "diff",
   colored = false,
   symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
-  cond = hide_in_width
+  cond = hide_in_width,
 }
 
 local mode = {
@@ -79,7 +79,18 @@ local lualine_opts = {
     theme = "auto",
     section_separators = { left = "", right = "" },
     component_separators = { left = "|", right = "|" },
-    disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+    disabled_filetypes = {
+      "Avante",
+      "AvanteInput",
+      "AvantePromptInput",
+      "AvanteSelectedCode",
+      "AvanteSelectedFiles",
+      "AvanteTodos",
+      "alpha",
+      "dashboard",
+      "NvimTree",
+      "Outline",
+    },
     always_divide_middle = true,
   },
   sections = {
@@ -88,7 +99,7 @@ local lualine_opts = {
     lualine_c = { copilot_status },
     lualine_x = { spaces, "encoding", "fileformat", filetype },
     lualine_y = { "progress" },
-    lualine_z = { location }
+    lualine_z = { location },
   },
   inactive_sections = {
     lualine_a = {},
@@ -96,7 +107,7 @@ local lualine_opts = {
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {},
   },
   tabline = {},
   extensions = {},
@@ -111,5 +122,5 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = lualine_opts,
-  }
+  },
 }
