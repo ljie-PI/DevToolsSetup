@@ -130,15 +130,23 @@ function M.setup()
   ----------------------------------------------------------------------------------------------------------------------
   -- Python
   ----------------------------------------------------------------------------------------------------------------------
-  lspconfig.pylsp.setup({
+  lspconfig.basedpyright.setup({
     settings = {
-      pylsp = {
-        plugins = {
-          pycodestyle = {
-            ignore = { "W391" },
-            maxLineLength = 100,
-          },
+      basedpyright = {
+        analysis = {
+          typeCheckingMode = "standard",
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          diagnosticMode = "openFilesOnly", -- or "workspace"
         },
+      },
+    },
+  })
+  lspconfig.ruff.setup({
+    cmd_env = { RUFF_TRACE = "messages" },
+    init_options = {
+      settings = {
+        logLevel = "error",
       },
     },
   })

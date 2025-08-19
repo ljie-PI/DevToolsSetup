@@ -1,6 +1,8 @@
 local nmappings = {
   {"<leader>/", "<CMD>lua require(\"Comment.api\").toggle.linewise.current()<CR>", desc = "Comment Current Line(s)", icon = nil, mode = "n" },
 
+  {"<leader>a", group = "AI Assistant", icon = nil },
+
   {
     { "<leader>b", group = "Buffer", icon = nil },
     { "<leader>b,", "<CMD>bprevious<CR>", desc = "Previous Buffer" },
@@ -9,8 +11,6 @@ local nmappings = {
     { "<leader>bd", "<CMD>Bdelete<CR>", desc = "Close Buffer" },
     { "<leader>bl", "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<CR>", desc = "List Buffers" },
   },
-
-  {"<leader>a", group = "AI Assistant", icon = nil },
 
   {"<leader>D", "<CMD>lua vim.diagnostic.open_float()<CR>", desc = "Diagnose",  icon = nil },
 

@@ -7,7 +7,7 @@ M.options = {
     bash = { "bash" },
     javascript = { "eslint_d" },
     lua = { "luacheck" },
-    python = { "pylint" },
+    python = { "ruff" },
     typescript = { "eslint_d" },
     typescriptreact = { "eslint_d" },
   },

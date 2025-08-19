@@ -36,11 +36,14 @@ exit /b 0
 
 :: Function to setup all components
 :setup_all
-    call :install_packages neovim helix gzip cmake llvm rust-analyzer lua-language-server yazi 7zip jq poppler fd ripgrep fzf zoxide ghostscript imagemagick
+    call :install_packages neovim helix gzip cmake uv llvm rust-analyzer lua-language-server yazi 7zip jq poppler fd ripgrep fzf zoxide ghostscript imagemagick
     if %ERRORLEVEL% NEQ 0 exit /b 1
 
     call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
     if %ERRORLEVEL% NEQ 0 exit /b 1
+
+    uv tool install basedpyright
+    uv tool install ruff
 
     call :setup_neovim 0
     call :setup_helix 0
@@ -57,11 +60,14 @@ exit /b 0
         echo setting up neovim...
 
         if not "%~1"=="0" (
-            call :install_packages neovim gzip cmake ripgrep llvm rust-analyzer lua-language-server
+            call :install_packages neovim gzip cmake uv ripgrep llvm rust-analyzer lua-language-server
             if %ERRORLEVEL% NEQ 0 exit /b 1
 
             call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
             if %ERRORLEVEL% NEQ 0 exit /b 1
+
+            uv tool install basedpyright
+            uv tool install ruff
         )
 
         mkdir "%LOCALAPPDATA%\nvim"
@@ -78,11 +84,14 @@ exit /b 0
         echo setting up helix...
 
         if not "%~1"=="0" (
-            call :install_packages helix llvm rust-analyzer lua-language-server
+            call :install_packages helix uv llvm rust-analyzer lua-language-server
             if %ERRORLEVEL% NEQ 0 exit /b 1
 
             call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
             if %ERRORLEVEL% NEQ 0 exit /b 1
+
+            uv tool install basedpyright
+            uv tool install ruff
         )
 
         mkdir "%APPDATA%\helix"
