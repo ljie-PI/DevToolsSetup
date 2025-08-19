@@ -3,10 +3,79 @@ local lspconfig = require("lspconfig")
 local M = {}
 
 function M.setup()
-------------------------------------------------------------------------------------------------------------------------
--- Lua
-------------------------------------------------------------------------------------------------------------------------
-  lspconfig.lua_ls.setup {
+  ----------------------------------------------------------------------------------------------------------------------
+  -- Bash
+  ----------------------------------------------------------------------------------------------------------------------
+  lspconfig.bashls.setup({})
+
+  ----------------------------------------------------------------------------------------------------------------------
+  -- C/C++
+  ----------------------------------------------------------------------------------------------------------------------
+  lspconfig.clangd.setup({})
+
+  ----------------------------------------------------------------------------------------------------------------------
+  -- Go
+  ----------------------------------------------------------------------------------------------------------------------
+  lspconfig.gopls.setup({
+    settings = {
+      gopls = {
+        gofumpt = true,
+        codelenses = {
+          gc_details = false,
+          generate = true,
+          regenerate_cgo = true,
+          run_govulncheck = true,
+          test = true,
+          tidy = true,
+          upgrade_dependency = true,
+          vendor = true,
+        },
+        hints = {
+          assignVariableTypes = true,
+          compositeLiteralFields = true,
+          compositeLiteralTypes = true,
+          constantValues = true,
+          functionTypeParameters = true,
+          parameterNames = true,
+          rangeVariableTypes = true,
+        },
+        analyses = {
+          nilness = true,
+          unusedparams = true,
+          unusedwrite = true,
+          useany = true,
+        },
+        usePlaceholders = true,
+        completeUnimported = true,
+        staticcheck = true,
+        directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+        semanticTokens = true,
+      },
+    },
+  })
+
+  ----------------------------------------------------------------------------------------------------------------------
+  -- Javascript/Typescript
+  ----------------------------------------------------------------------------------------------------------------------
+  lspconfig.ts_ls.setup({
+    init_options = {
+      hostInfo = "neovim",
+    },
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
+    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+  })
+
+  ----------------------------------------------------------------------------------------------------------------------
+  -- Lua
+  ----------------------------------------------------------------------------------------------------------------------
+  lspconfig.lua_ls.setup({
     on_init = function(client)
       if client.workspace_folders then
         local path = client.workspace_folders[1].name
@@ -19,80 +88,47 @@ function M.setup()
         runtime = {
           -- Tell the language server which version of Lua you're using
           -- (most likely LuaJIT in the case of Neovim)
-          version = "LuaJIT"
+          version = "LuaJIT",
         },
         workspace = {
           checkThirdParty = false,
           library = {
             vim.env.VIMRUNTIME,
             vim.fn.expand("$VIMRUNTIME/lua"),
-            vim.fn.stdpath("config") .. "/lua"
-          }
-        }
+            vim.fn.stdpath("config") .. "/lua",
+          },
+        },
       })
     end,
     settings = {
       Lua = {
         diagnostics = {
           globals = { "vim" },
-        }
+        },
       },
     },
-  }
+  })
 
-
-------------------------------------------------------------------------------------------------------------------------
--- C/C++
-------------------------------------------------------------------------------------------------------------------------
-  lspconfig.clangd.setup {}
-
-
-------------------------------------------------------------------------------------------------------------------------
--- Rust
-------------------------------------------------------------------------------------------------------------------------
-  lspconfig.rust_analyzer.setup {}
-
-
-------------------------------------------------------------------------------------------------------------------------
--- Bash
-------------------------------------------------------------------------------------------------------------------------
-  lspconfig.bashls.setup {}
-
-
-------------------------------------------------------------------------------------------------------------------------
--- Python
-------------------------------------------------------------------------------------------------------------------------
-  lspconfig.pylsp.setup {
+  ----------------------------------------------------------------------------------------------------------------------
+  -- Python
+  ----------------------------------------------------------------------------------------------------------------------
+  lspconfig.pylsp.setup({
     settings = {
       pylsp = {
         plugins = {
           pycodestyle = {
             ignore = { "W391" },
-            maxLineLength = 100
-          }
-        }
-      }
-    }
-  }
-
-
-------------------------------------------------------------------------------------------------------------------------
--- Typescript/Javascript
-------------------------------------------------------------------------------------------------------------------------
-  lspconfig.ts_ls.setup {
-    init_options = {
-      hostInfo = "neovim"
+            maxLineLength = 100,
+          },
+        },
+      },
     },
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx"
-    },
-    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")
-  }
+  })
+
+  ----------------------------------------------------------------------------------------------------------------------
+  -- Rust
+  ----------------------------------------------------------------------------------------------------------------------
+  lspconfig.rust_analyzer.setup({})
 end
 
 return M

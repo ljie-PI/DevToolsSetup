@@ -4,7 +4,7 @@ local function dap_setup()
   dap.adapters.lldb = {
     type = "executable",
     command = vim.fn.exepath("lldb-dap"), -- adjust as needed, must be absolute path
-    name = "lldb"
+    name = "lldb",
   }
   dap.configurations.cpp = {
     {
@@ -17,7 +17,7 @@ local function dap_setup()
       cwd = "${workspaceFolder}",
       stopOnEntry = false,
       args = {},
-    }
+    },
   }
   dap.configurations.c = dap.configurations.cpp
   dap.configurations.rust = dap.configurations.cpp
@@ -38,17 +38,17 @@ local dapui_opts = {
   layouts = {
     {
       elements = {
-        { id = "scopes",      size = 0.33 },
+        { id = "scopes", size = 0.33 },
         { id = "breakpoints", size = 0.17 },
-        { id = "stacks",      size = 0.25 },
-        { id = "watches",     size = 0.25 },
+        { id = "stacks", size = 0.25 },
+        { id = "watches", size = 0.25 },
       },
       size = 0.33,
       position = "right",
     },
     {
       elements = {
-        { id = "repl",    size = 0.45 },
+        { id = "repl", size = 0.45 },
         { id = "console", size = 0.55 },
       },
       size = 0.27,
@@ -57,7 +57,7 @@ local dapui_opts = {
   },
   floating = {
     max_height = 0.9,
-    max_width = 0.5,             -- Floats will be treated as percentage of your screen.
+    max_width = 0.5, -- Floats will be treated as percentage of your screen.
     border = vim.g.border_chars, -- Border style. Can be 'single', 'double' or 'rounded'
     mappings = {
       close = { "q", "<Esc>" },
@@ -95,13 +95,13 @@ local virt_text_opts = {
   all_references = false,
   clear_on_continue = true,
   display_callback = function(variable, buf, stackframe, node, options)
-    if options.virt_text_pos == 'inline' then
-      return ' = ' .. variable.value:gsub("%s+", " ")
+    if options.virt_text_pos == "inline" then
+      return " = " .. variable.value:gsub("%s+", " ")
     else
-      return variable.name .. ' = ' .. variable.value:gsub("%s+", " ")
+      return variable.name .. " = " .. variable.value:gsub("%s+", " ")
     end
   end,
-  virt_text_pos = vim.fn.has('nvim-0.10') == 1 and 'inline' or 'eol',
+  virt_text_pos = vim.fn.has("nvim-0.10") == 1 and "inline" or "eol",
 }
 
 return {
@@ -109,6 +109,10 @@ return {
     "mfussenegger/nvim-dap",
     lazy = true,
     event = "VeryLazy",
+    {
+      "leoluz/nvim-dap-go",
+      opts = {},
+    },
     config = dap_setup,
   },
 
@@ -132,5 +136,5 @@ return {
       "mfussenegger/nvim-dap",
     },
     opts = virt_text_opts,
-  }
+  },
 }

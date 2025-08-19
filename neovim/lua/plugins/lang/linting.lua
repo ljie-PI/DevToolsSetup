@@ -1,7 +1,7 @@
 local M = {}
 
 M.options = {
-  debug = false,
+  debug = true,
   events = { "BufWritePost", "BufReadPost", "InsertLeave" },
   linters_by_ft = {
     bash = { "bash" },

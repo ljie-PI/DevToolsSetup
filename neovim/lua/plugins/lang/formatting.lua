@@ -5,6 +5,7 @@ M.options = {
     bash = { "shellharden" },
     c = { "clang-format" },
     cpp = { "clang-format" },
+    go = { "goimports", "gofumpt" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
     lua = { "stylua" },
     python = { "isort", "black" },
