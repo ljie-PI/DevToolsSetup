@@ -11,7 +11,43 @@ function M.setup()
   ----------------------------------------------------------------------------------------------------------------------
   -- C/C++
   ----------------------------------------------------------------------------------------------------------------------
-  lspconfig.clangd.setup({})
+  lspconfig.clangd.setup({
+    keys = {
+      {
+        "<leader>lh",
+        "<cmd>ClangdSwitchSourceHeader<cr>",
+        desc = "Switch Source/Header (C/C++)",
+      },
+    },
+    root_dir = function(fname)
+      local make_root = require("lspconfig.util").root_pattern(
+        "Makefile",
+        "configure.ac",
+        "configure.in",
+        "config.h.in",
+        "meson.build",
+        "meson_options.txt",
+        "build.ninja"
+      )(fname)
+      local clang_root = require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(fname)
+      local git_root = require("lspconfig.util").find_git_ancestor(fname)
+      return make_root or clang_root or git_root
+    end,
+    cmd = {
+      "clangd",
+      "--background-index",
+      "--clang-tidy",
+      "--header-insertion=iwyu",
+      "--completion-style=detailed",
+      "--function-arg-placeholders",
+      "--fallback-style=llvm",
+    },
+    init_options = {
+      usePlaceholders = true,
+      completeUnimported = true,
+      clangdFileStatus = true,
+    },
+  })
 
   ----------------------------------------------------------------------------------------------------------------------
   -- Go
@@ -52,24 +88,6 @@ function M.setup()
         semanticTokens = true,
       },
     },
-  })
-
-  ----------------------------------------------------------------------------------------------------------------------
-  -- Javascript/Typescript
-  ----------------------------------------------------------------------------------------------------------------------
-  lspconfig.ts_ls.setup({
-    init_options = {
-      hostInfo = "neovim",
-    },
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx",
-    },
-    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
   })
 
   ----------------------------------------------------------------------------------------------------------------------
@@ -129,6 +147,24 @@ function M.setup()
   -- Rust
   ----------------------------------------------------------------------------------------------------------------------
   lspconfig.rust_analyzer.setup({})
+
+  ----------------------------------------------------------------------------------------------------------------------
+  -- Typescript
+  ----------------------------------------------------------------------------------------------------------------------
+  lspconfig.ts_ls.setup({
+    init_options = {
+      hostInfo = "neovim",
+    },
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
+    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+  })
 end
 
 return M
