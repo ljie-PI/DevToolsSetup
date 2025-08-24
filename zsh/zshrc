@@ -102,6 +102,12 @@ fi
 if [ -d "$BREW_HOME" ]; then
   export PATH="$BREW_HOME/bin:$PATH"
 fi
+# Rust
+export CARGO_HOME="$HOME/.cargo"
+export PATH="$HOME/.cargo/bin:$PATH"
+# Go
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
 
 # Other env variables
 export COLORTERM="truecolor"
