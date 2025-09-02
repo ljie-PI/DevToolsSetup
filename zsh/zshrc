@@ -112,5 +112,7 @@ export PATH="$GOPATH/bin:$PATH"
 # Other env variables
 export COLORTERM="truecolor"
 
+export LANG="C.UTF-8"
+
 export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
