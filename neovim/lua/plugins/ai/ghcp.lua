@@ -29,7 +29,7 @@ M.opts = {
       accept_line = false,
       next = "<C-l>",
       prev = "<C-h>",
-      dismiss = "<ESC>",
+      dismiss = "<C-d>",
     },
   },
   filetypes = {
