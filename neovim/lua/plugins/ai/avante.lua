@@ -3,15 +3,10 @@ local nvim_util = require("utils")
 local M = {}
 
 M.opts = {
+  ---@alias Mode "agentic" | "legacy"
+  mode = "agentic",
+
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-  -- provider = "azure",
-  -- auto_suggestions_provider = nil,
-  -- azure = {
-  --   endpoint = "https://ljie-gpt-demo.openai.azure.com",
-  --   deployment = "gpt-4o",
-  --   api_version = "2024-08-01-preview",
-  --   timeout = 30000,
-  -- },
   provider = "copilot",
   providers = {
     copilot = {
@@ -25,12 +20,10 @@ M.opts = {
   ---3. second_provider: The second provider to generate response. Default to "claude".
   ---4. prompt: The prompt to generate response based on the two reference outputs.
   ---5. timeout: Timeout in milliseconds. Default to 60000.
-  ---How it works:
-  --- When dual_boost is enabled, avante will generate two responses from the first_provider and second_provider respectively. Then use the response from the first_provider as provider1_output and the response from the second_provider as provider2_output. Finally, avante will generate a response based on the prompt and the two reference outputs, with the default Provider as normal.
-  ---Note: This is an experimental feature and may not work as expected.
   dual_boost = {
     enabled = false,
   },
+
   behaviour = {
     auto_suggestions = false,
     auto_set_highlight_group = true,
@@ -75,7 +68,7 @@ M.opts = {
     ---@type "right" | "left" | "top" | "bottom"
     position = "right",
     wrap = true,
-    width = 30,       -- % based on available width
+    width = 36,       -- % based on available width
     sidebar_header = {
       enabled = true, -- true, false to enable/disable the header
       ---@type "left" | "center" | "right"
