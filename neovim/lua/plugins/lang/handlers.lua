@@ -16,7 +16,7 @@ local function lsp_navi_impl(err, result, ctx, orig_handlers)
 
   -- Normalize the buffer name on Windows, so that other plugins (e.g. nvim-tree, telescope) can work better
   if nvim_util.is_win() then
-    local uri_keys = {"targetUri", "uri"}
+    local uri_keys = { "targetUri", "uri" }
     for _, res_i in ipairs(result) do
       local uri_key = nil
       for _, key in ipairs(uri_keys) do
@@ -40,23 +40,16 @@ local function lsp_navi_handler(orig_navi_handlers)
 end
 
 M.setup = function()
-  local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
-
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
-
   local config = {
-    -- disable virtual text
     virtual_text = false,
-    -- show signs
     signs = {
-      active = signs,
+      active = true,
+      text = {
+        [vim.diagnostic.severity.ERROR] = "",
+        [vim.diagnostic.severity.WARN] = "",
+        [vim.diagnostic.severity.INFO] = "",
+        [vim.diagnostic.severity.HINT] = "",
+      },
     },
     update_in_insert = true,
     underline = true,
@@ -85,7 +78,7 @@ M.setup = function()
     "textDocument/declaration",
     "textDocument/definition",
     "textDocument/implementation",
-    "textDocument/references"
+    "textDocument/references",
   }
   local orig_navi_handlers = {}
   for _, method in ipairs(navi_methods) do
