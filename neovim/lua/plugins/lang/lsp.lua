@@ -1,17 +1,17 @@
-local lspconfig = require("lspconfig")
-
 local M = {}
+
+local lspconfig_util = require("lspconfig.util")
 
 function M.setup()
   ----------------------------------------------------------------------------------------------------------------------
   -- Bash
   ----------------------------------------------------------------------------------------------------------------------
-  lspconfig.bashls.setup({})
+  vim.lsp.enable("bashls")
 
   ----------------------------------------------------------------------------------------------------------------------
   -- C/C++
   ----------------------------------------------------------------------------------------------------------------------
-  lspconfig.clangd.setup({
+  vim.lsp.enable("clangd", {
     keys = {
       {
         "<leader>lh",
@@ -20,7 +20,7 @@ function M.setup()
       },
     },
     root_dir = function(fname)
-      local make_root = require("lspconfig.util").root_pattern(
+      local make_root = lspconfig_util.root_pattern(
         "Makefile",
         "configure.ac",
         "configure.in",
@@ -29,8 +29,8 @@ function M.setup()
         "meson_options.txt",
         "build.ninja"
       )(fname)
-      local clang_root = require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(fname)
-      local git_root = require("lspconfig.util").find_git_ancestor(fname)
+      local clang_root = lspconfig_util.root_pattern("compile_commands.json", "compile_flags.txt")(fname)
+      local git_root = lspconfig_util.find_git_ancestor(fname)
       return make_root or clang_root or git_root
     end,
     cmd = {
@@ -52,7 +52,7 @@ function M.setup()
   ----------------------------------------------------------------------------------------------------------------------
   -- Go
   ----------------------------------------------------------------------------------------------------------------------
-  lspconfig.gopls.setup({
+  vim.lsp.enable("gopls", {
     settings = {
       gopls = {
         gofumpt = true,
@@ -93,7 +93,7 @@ function M.setup()
   ----------------------------------------------------------------------------------------------------------------------
   -- Lua
   ----------------------------------------------------------------------------------------------------------------------
-  lspconfig.lua_ls.setup({
+  vim.lsp.enable("lua_ls", {
     on_init = function(client)
       if client.workspace_folders then
         local path = client.workspace_folders[1].name
@@ -130,7 +130,7 @@ function M.setup()
   ----------------------------------------------------------------------------------------------------------------------
   -- Python
   ----------------------------------------------------------------------------------------------------------------------
-  lspconfig.basedpyright.setup({
+  vim.lsp.enable("basedpyright", {
     settings = {
       basedpyright = {
         analysis = {
@@ -142,7 +142,7 @@ function M.setup()
       },
     },
   })
-  lspconfig.ruff.setup({
+  vim.lsp.enable("ruff", {
     cmd_env = { RUFF_TRACE = "messages" },
     init_options = {
       settings = {
@@ -154,12 +154,12 @@ function M.setup()
   ----------------------------------------------------------------------------------------------------------------------
   -- Rust
   ----------------------------------------------------------------------------------------------------------------------
-  lspconfig.rust_analyzer.setup({})
+  vim.lsp.enable("rust_analyzer")
 
   ----------------------------------------------------------------------------------------------------------------------
   -- Typescript
   ----------------------------------------------------------------------------------------------------------------------
-  lspconfig.ts_ls.setup({
+  vim.lsp.enable("ts_ls", {
     init_options = {
       hostInfo = "neovim",
     },
@@ -171,7 +171,7 @@ function M.setup()
       "typescriptreact",
       "typescript.tsx",
     },
-    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+    root_dir = lspconfig_util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
   })
 end
 
