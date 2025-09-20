@@ -92,8 +92,7 @@ function setup_neovim() {
         return
     fi
     echo "setting up neovim..."
-    brew install neovim cmake ripgrep llvm rust-analyzer basedpyright ruff \
-      typescript-language-server bash-language-server lua-language-server
+    brew install neovim cmake ripgrep lua-language-server stylua luacheck llvm rust-analyzer basedpyright ruff typescript-language-server bash-language-server
 
     # Create neovim config directory if it doesn't exist
     mkdir -p ~/.config/nvim
@@ -109,8 +108,7 @@ function setup_helix() {
         return
     fi
     echo "setting up helix..."
-    brew install helix llvm rust-analyzer basedpyright ruff \
-      typescript-language-server bash-language-server lua-language-server
+    brew install helix llvm rust-analyzer basedpyright ruff typescript-language-server bash-language-server
 
     # Create helix config directory if it doesn't exist
     mkdir -p ~/.config/helix
