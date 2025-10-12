@@ -80,12 +80,7 @@ local lualine_opts = {
     section_separators = { left = "", right = "" },
     component_separators = { left = "|", right = "|" },
     disabled_filetypes = {
-      "Avante",
-      "AvanteInput",
-      "AvantePromptInput",
-      "AvanteSelectedCode",
-      "AvanteSelectedFiles",
-      "AvanteTodos",
+      "sidekick_terminal",
       "alpha",
       "dashboard",
       "NvimTree",
