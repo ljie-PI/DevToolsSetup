@@ -96,14 +96,20 @@ M.keys = {
   {
     "<leader>af",
     function()
-      require("sidekick.cli").send({ msg = "{file}" })
+      require("sidekick.cli").send({
+        msg = "{file}",
+        filter = { installed = true },
+      })
     end,
     desc = "Send File",
   },
   {
     "<leader>as",
     function()
-      require("sidekick.cli").send({ msg = "{selection}", installed = true })
+      require("sidekick.cli").send({
+        msg = "{selection}",
+        filter = { installed = true },
+      })
     end,
     desc = "Send Visual Selection",
     mode = { "v" },
