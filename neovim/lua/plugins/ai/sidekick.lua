@@ -78,7 +78,7 @@ M.keys = {
     desc = "Sidekick Toggle CLI",
   },
   {
-    "<leader>at",
+    "<leader>ac",
     function()
       require("sidekick.cli").select({
         filter = { installed = true },
@@ -103,7 +103,7 @@ M.keys = {
   {
     "<leader>as",
     function()
-      require("sidekick.cli").send({ msg = "{selection}" })
+      require("sidekick.cli").send({ msg = "{selection}", installed = true })
     end,
     desc = "Send Visual Selection",
     mode = { "v" },

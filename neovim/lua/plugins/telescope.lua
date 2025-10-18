@@ -36,22 +36,30 @@ local function telescope_opts()
           ["<C-f>"] = actions.preview_scrolling_down,
           ["<C-b>"] = actions.preview_scrolling_up,
 
-          ["<C-h>"] = "which_key"
+          ["<C-h>"] = "which_key",
         },
         n = {
           ["q"] = actions.close,
         },
       },
       file_ignore_patterns = {
-          ".project",
-          ".tags",
-          "build/",
-          "out/",
-          "target/",
-          "node_modules/",
-          "data/",
-          "log/",
-          "logs/",
+        ".project",
+        ".tags",
+        "build/",
+        "out/",
+        "target/",
+        "node_modules/",
+        "data/",
+        "log/",
+        "logs/",
+      },
+    },
+    extensions = {
+      ["fzf"] = {
+        case_mode = "smart_case", ---@type "smart_case"|"ignore_case"|"respect_case"
+      },
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown({}),
       },
     },
   }
@@ -72,12 +80,14 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
     },
     opts = telescope_opts,
     config = function(_, opts)
       local telescope = require("telescope")
       telescope.setup(opts)
       telescope.load_extension("fzf")
-    end
+      telescope.load_extension("ui-select")
+    end,
   },
 }
