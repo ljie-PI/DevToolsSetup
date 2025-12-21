@@ -43,12 +43,6 @@ local catppuccin_opts = {
 
 return {
   {
-    "ljie-PI/helix-nvim",
-    lazy = true,
-    name = "helix",
-  },
-
-  {
     "folke/tokyonight.nvim",
     lazy = true,
     name = "tokyonight",

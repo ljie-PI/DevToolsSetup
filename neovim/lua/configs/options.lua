@@ -23,10 +23,11 @@ local options = {
   swapfile = false,                        -- creates a swapfile
   expandtab = true,                        -- convert tabs to spaces
   shiftwidth = 2,                          -- the number of spaces inserted for each indentation
-  tabstop = 2                              -- number of spaces for a tab
-}
+  tabstop = 2,                             -- number of spaces for a tab
 
-vim.opt.shortmess:append "c"
+  -- others
+  shortmess = vim.o.shortmess .. "c"       -- suppress completion menu messages
+ }
 
 for k, v in pairs(options) do
   vim.opt[k] = v
