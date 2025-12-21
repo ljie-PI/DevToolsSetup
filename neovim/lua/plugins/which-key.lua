@@ -12,6 +12,11 @@ local nmappings = {
     { "<leader>bl", "<CMD>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<CR>", desc = "List Buffers" },
   },
 
+  {
+    { "<leader>c", group = "Commands", icon = nil },
+    { "<leader>ca", "<CMD>AIAssistantVendor<CR>", desc = "Switch AI Assistant" },
+  },
+
   {"<leader>D", "<CMD>lua vim.diagnostic.open_float()<CR>", desc = "Diagnose",  icon = nil },
 
   {

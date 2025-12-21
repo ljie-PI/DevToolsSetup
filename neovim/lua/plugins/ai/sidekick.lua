@@ -13,7 +13,7 @@ M.opts = {
   },
   cli = {
     win = {
-      layout = "float", ---@type "float"|"left"|"bottom"|"top"|"right"
+      layout = "right", ---@type "float"|"left"|"bottom"|"top"|"right"
       -- options used when layout is "float"
       float = {
         width = 0.9,
