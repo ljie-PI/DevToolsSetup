@@ -85,6 +85,13 @@ local nmappings = {
     { "<leader>wh", "<CMD>split<CR>", desc = "Horizontal Split" },
     { "<leader>wv", "<CMD>vsplit<CR>", desc = "Vertical Split" },
   },
+
+  {
+    { "<leader>z", group = "Folding", icon = nil },
+    { "<leader>zu", "<CMD>normal! zR<CR>", desc = "Unfold All" },
+    { "<leader>zo", "<CMD>normal! zO<CR>", desc = "Unfold Current Fold Recursively" },
+    { "<leader>zz", "<CMD>normal! zA<CR>", desc = "Toggle Fold Recursively" },
+  },
 }
 
 local vmappings = {

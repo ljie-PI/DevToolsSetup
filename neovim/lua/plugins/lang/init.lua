@@ -13,7 +13,7 @@ return {
     opts_extend = { "ensure_installed" },
     opts = treesitter.options,
     config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      treesitter.setup(opts)
     end,
   },
 
