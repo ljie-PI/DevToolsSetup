@@ -6,6 +6,7 @@ local treesitter = require("plugins.lang.treesitter")
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     lazy = not nvim_util.is_opening_files(),
     build = ":TSUpdate",
     event = { "LazyFile", "VeryLazy" },
