@@ -1,5 +1,15 @@
 local wezterm = require('wezterm')
 
+wezterm.on('gui-attached', function(domain)
+  local workspace = wezterm.mux.get_active_workspace()
+  for _, window in ipairs(wezterm.mux.all_windows()) do
+    if window:get_workspace() == workspace then
+      window:gui_window():maximize()
+    end
+  end
+end)
+
+
 local config = {}
 
 config.font = wezterm.font 'Hack Nerd Font Mono'
@@ -19,6 +29,10 @@ config.window_padding = {
 
 config.window_background_opacity = 1.0
 config.text_background_opacity = 1.0
+
+if string.match(wezterm.target_triple, "windows") then
+  config.default_prog = { "wsl.exe", "--cd", "~" }
+end
 
 if not string.match(wezterm.target_triple, "darwin") then
   config.keys = {
