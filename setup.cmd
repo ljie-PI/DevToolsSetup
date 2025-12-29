@@ -39,7 +39,7 @@ exit /b 0
     call :install_packages neovim helix gzip cmake uv lua-language-server stylua luacheck llvm rust-analyzer yazi 7zip jq poppler fd ripgrep fzf zoxide ghostscript imagemagick
     if %ERRORLEVEL% NEQ 0 exit /b 1
 
-    call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
+    call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono Meslo-NF Meslo-NF-Mono
     if %ERRORLEVEL% NEQ 0 exit /b 1
 
     uv tool install basedpyright
@@ -63,7 +63,7 @@ exit /b 0
             call :install_packages neovim gzip cmake uv ripgrep lua-language-server stylua luacheck llvm rust-analyzer
             if %ERRORLEVEL% NEQ 0 exit /b 1
 
-            call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
+            call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono Meslo-NF Meslo-NF-Mono
             if %ERRORLEVEL% NEQ 0 exit /b 1
 
             uv tool install basedpyright
@@ -87,7 +87,7 @@ exit /b 0
             call :install_packages helix uv llvm rust-analyzer
             if %ERRORLEVEL% NEQ 0 exit /b 1
 
-            call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
+            call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono Meslo-NF Meslo-NF-Mono
             if %ERRORLEVEL% NEQ 0 exit /b 1
 
             uv tool install basedpyright
@@ -128,7 +128,7 @@ exit /b 0
         echo setting up wezterm...
 
         if not "%~1"=="0" (
-            call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
+            call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono Meslo-NF Meslo-NF-Mono
             if %ERRORLEVEL% NEQ 0 exit /b 1
         )
 
@@ -155,7 +155,7 @@ exit /b 0
             echo setting up windows-terminal...
 
             if not "%~1"=="0" (
-                call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono
+                call :install_fonts Hack-NF Hack-NF-Mono SourceCodePro-NF SourceCodePro-NF-Mono FiraCode-NF FiraCode-NF-Mono SpaceMono-NF SpaceMono-NF-Mono Meslo-NF Meslo-NF-Mono
                 if %ERRORLEVEL% NEQ 0 exit /b 1
             )
 

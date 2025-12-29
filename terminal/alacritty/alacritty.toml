@@ -7,7 +7,7 @@ option_as_alt = "OnlyLeft"
 # shell = { program = "wsl", args = ["--cd", "~"] }
 
 [font]
-normal = { family = "Hack Nerd Font", style = "Regular" }
-bold = { family = "Hack Nerd Font", style = "Bold" }
-italic = { family = "Hack Nerd Font", style = "Italic" }
+normal = { family = "MesloLGS Nerd Font", style = "Regular" }
+bold = { family = "MesloLGS Nerd Font", style = "Bold" }
+italic = { family = "MesloLGS Nerd Font", style = "Italic" }
 size = 12.0

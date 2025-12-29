@@ -106,7 +106,7 @@
   "profiles": {
     "defaults": {
       "font": {
-        "face": "Hack Nerd Font Mono",
+        "face": "MesloLGS Nerd Font",
         "size": 10,
         "weight": "normal"
       },

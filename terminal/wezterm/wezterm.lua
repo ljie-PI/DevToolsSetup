@@ -12,7 +12,7 @@ end)
 
 local config = {}
 
-config.font = wezterm.font 'Hack Nerd Font Mono'
+config.font = wezterm.font 'MesloLGS Nerd Font'
 config.font_size = 12.0
 config.color_scheme = 'Tokyo Night Storm'
 
