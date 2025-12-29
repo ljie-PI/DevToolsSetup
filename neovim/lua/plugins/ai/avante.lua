@@ -3,6 +3,8 @@ local nvim_util = require("utils")
 local M = {}
 
 M.opts = {
+  -- debug = true,
+
   ---@alias Mode "agentic" | "legacy"
   mode = "agentic",
 
@@ -20,10 +22,6 @@ M.opts = {
     },
     ["qwen-code"] = {
       command = "qwen",
-      args = { "--experimental-acp" },
-    },
-    ["gemini-cli"] = {
-      command = "gemini",
       args = { "--experimental-acp" },
     },
   },
