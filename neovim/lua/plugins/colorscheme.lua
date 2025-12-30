@@ -1,3 +1,14 @@
+local rosepine_opts = {
+  variant = "moon", -- auto, main, moon, or dawn
+  dark_variant = "moon",
+  extend_background_behind_borders = true,
+  styles = {
+    bold = true,
+    italic = true,
+    transparency = false,
+  },
+}
+
 local tokyonight_opts = {
   style = "storm",
 }
@@ -42,6 +53,13 @@ local catppuccin_opts = {
 }
 
 return {
+  {
+    "rose-pine/neovim",
+    lazy = true,
+    name = "rose-pine",
+    opts = rosepine_opts,
+  },
+
   {
     "folke/tokyonight.nvim",
     lazy = true,
