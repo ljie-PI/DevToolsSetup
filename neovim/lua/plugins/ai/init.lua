@@ -13,7 +13,7 @@ local function get_ai_assistant_preference()
       return content
     end
   end
-  return "avante" -- default
+  return "sidekick" -- default
 end
 
 vim.g.ai_assistant = get_ai_assistant_preference()

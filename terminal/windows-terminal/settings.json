@@ -97,7 +97,7 @@
   ],
   "copyFormatting": "none",
   "copyOnSelect": false,
-  "defaultProfile": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+  "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
   "newTabMenu": [
     {
       "type": "remainingProfiles"
@@ -107,10 +107,10 @@
     "defaults": {
       "font": {
         "face": "MesloLGS Nerd Font",
-        "size": 10,
+        "size": 12,
         "weight": "normal"
       },
-      "colorScheme": "Solarized Dark Patched",
+      "colorScheme": "rose-pine-moon",
       "opacity": 90
     },
     "list": [
@@ -159,6 +159,29 @@
     ]
   },
   "schemes": [
+    {
+      "name": "rose-pine-moon",
+      "cursorColor": "#59546d",
+      "selectionBackground": "#312f44",
+      "background": "#232136",
+      "foreground": "#e0def4",
+      "black": "#393552",
+      "blue": "#9ccfd8",
+      "cyan": "#ea9a97",
+      "green": "#3e8fb0",
+      "purple": "#c4a7e7",
+      "red": "#eb6f92",
+      "white": "#e0def4",
+      "yellow": "#f6c177",
+      "brightBlack": "#817c9c",
+      "brightBlue": "#9ccfd8",
+      "brightCyan": "#ea9a97",
+      "brightGreen": "#3e8fb0",
+      "brightPurple": "#c4a7e7",
+      "brightRed": "#eb6f92",
+      "brightWhite": "#e0def4",
+      "brightYellow": "#f6c177"
+    },
     {
       "name": "Solarized Dark Patched",
       "cursorColor": "#657b83",

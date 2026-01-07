@@ -9,12 +9,15 @@ wezterm.on('gui-attached', function(domain)
   end
 end)
 
-
 local config = {}
 
-config.font = wezterm.font 'MesloLGS Nerd Font'
+if string.match(wezterm.target_triple, "windows") then
+  -- config.default_prog = { "wsl.exe", "--cd", "~" }
+  config.default_prog = { 'pwsh.exe', '-NoLogo' }
+end
+
 config.font_size = 12.0
-config.color_scheme = 'Tokyo Night Storm'
+config.color_scheme = 'rose-pine-moon'
 
 config.use_fancy_tab_bar = true
 config.tab_bar_at_bottom = true
@@ -27,12 +30,8 @@ config.window_padding = {
   bottom = 1
 }
 
-config.window_background_opacity = 1.0
-config.text_background_opacity = 1.0
-
-if string.match(wezterm.target_triple, "windows") then
-  config.default_prog = { "wsl.exe", "--cd", "~" }
-end
+config.window_background_opacity = 0.9
+config.text_background_opacity = 0.9
 
 if not string.match(wezterm.target_triple, "darwin") then
   config.keys = {
@@ -45,7 +44,9 @@ if not string.match(wezterm.target_triple, "darwin") then
     { key = '7', mods = 'ALT', action = wezterm.action.ActivateTab(6) },
     { key = '8', mods = 'ALT', action = wezterm.action.ActivateTab(7) },
     { key = '9', mods = 'ALT', action = wezterm.action.ActivateTab(-1) },
+    { key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b\r"} },
   }
+
 end
 
 return config

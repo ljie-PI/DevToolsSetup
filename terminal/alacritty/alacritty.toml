@@ -1,3 +1,9 @@
+[general]
+# working_directory = "~"
+import = [
+  "~/.config/alacritty/themes/rose_pine_moon.toml"
+]
+
 [window]
 startup_mode = "Maximized"
 opacity = 0.9

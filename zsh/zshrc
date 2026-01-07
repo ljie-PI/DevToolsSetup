@@ -16,7 +16,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(common-aliases zsh-autosuggestions zsh-syntax-highlighting tmux git svn)
+plugins=(common-aliases zsh-autosuggestions zsh-syntax-highlighting git svn)
 
 # User configuration
 
@@ -41,11 +41,14 @@ alias zshreload="source ~/.zshrc"
 
 alias vi="nvim"
 
-alias tmon="tmux set mouse on"
-alias tmoff="tmux set mouse off"
-
-alias dev1="ssh -o Port=2201 ljie@dev.lab440.tech"
-alias dev2="ssh -o Port=2202 ljie@dev.lab440.tech"
+alias zs="zellij -s"
+alias zj="zellij --layout compact -s"
+alias za="zellij attach"
+alias zl="zellij list-sessions"
+alias zk="zellij kill-session"
+alias zka="zellij kill-all-sessions"
+alias zd="zellij delete-session"
+alias zda="zellij delete-all-sessions"
 
 alias cdw="cd ~/Workspace"
 alias cdc="cd ~/Configs"
@@ -64,6 +67,9 @@ fi
 if [ -d "$BREW_HOME" ]; then
   export PATH="$BREW_HOME/bin:$PATH"
 fi
+export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+# Zellij
 # Rust
 export CARGO_HOME="$HOME/.cargo"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -73,6 +79,3 @@ export PATH="$GOPATH/bin:$PATH"
 
 # Other env variables
 export COLORTERM="truecolor"
-
-export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
-export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"

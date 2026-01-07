@@ -9,5 +9,5 @@ show_symlink = true
 [opener]
 edit = [
 	{ run = "nvim $@", block = true, for = "unix" },
-	{ run = "nvim %*", block = true, for = "windows" },
+	{ run = "hx %*", block = true, for = "windows" },
 ]

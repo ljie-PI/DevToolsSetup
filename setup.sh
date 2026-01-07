@@ -40,16 +40,20 @@ function setup_zsh() {
     echo "zsh has been setup successfully"
 }
 
-function setup_tmux() {
-    if [ -f ~/.tmux.conf ]; then
-        echo "tmux has already been setup"
+function setup_zellij() {
+    if [ -f ~/.config/zellij/config.kdl ]; then
+        echo "zellij has already been setup"
         return
     fi
-    echo "setting up tmux..."
-    brew install tmux
+    echo "setting up zellij..."
+    brew install zellij
 
-    cp tmux/tmux.conf ~/.tmux.conf
-    echo "tmux has been setup successfully"
+    # Create zellij config directory if it doesn't exist
+    mkdir -p ~/.config/zellij
+
+    # Copy configuration files
+    cp -r zellij/* ~/.config/zellij/
+    echo "zellij has been setup successfully"
 }
 
 function setup_yazi() {
@@ -61,9 +65,7 @@ function setup_yazi() {
     brew install yazi ffmpegthumbnailer sevenzip jq poppler fd ripgrep fzf zoxide imagemagick
 
     # Create yazi config directory if it doesn't exist
-    if [ ! -d ~/.config/yazi ]; then
-        mkdir -p ~/.config/yazi
-    fi
+    mkdir -p ~/.config/yazi
 
     # Copy configuration files
     cp yazi/keymap.toml ~/.config/yazi/keymap.toml
@@ -118,35 +120,36 @@ function setup_helix() {
     echo "helix has been setup successfully"
 }
 
-function setup_wezterm() {
-    if [ -d ~/.config/wezterm ]; then
-        echo "wezterm has already been setup"
+function setup_alacritty() {
+    if [ -d ~/.config/alacritty ]; then
+        echo "alacritty has already been setup"
         return
     fi
-    echo "setting up wezterm..."
-    # Create wezterm config directory if it doesn't exist
-    mkdir -p ~/.config/wezterm
+    echo "setting up alacritty..."
+
+    # Create alacritty config directory if it doesn't exist
+    mkdir -p ~/.config/alacritty
 
     # Copy configuration files
-    cp -r terminal/wezterm/* ~/.config/wezterm/
-    echo "wezterm has been setup successfully"
+    cp -r terminal/alacritty/* ~/.config/alacritty/
+    echo "alacritty has been setup successfully"
 }
 
 function setup() {
     if [ $# -eq 0 ]; then
-        echo "Please provide at least one parameter: zsh, tmux, yazi, fonts, neovim/nvim, helix, wezterm, or all"
+        echo "Please provide at least one parameter: zsh, zellij, yazi, fonts, neovim/nvim, helix, alacritty, or all"
         exit 1
     fi
 
     # First validate all parameters
     for param in "$@"; do
         case $param in
-            "all"|"zsh"|"tmux"|"yazi"|"fonts"|"neovim"|"nvim"|"helix"|"wezterm")
+            "all"|"zsh"|"zellij"|"yazi"|"fonts"|"neovim"|"nvim"|"helix"|"alacritty")
                 continue
                 ;;
             *)
                 echo "Invalid parameter: $param"
-                echo "Valid parameters are: zsh, tmux, yazi, fonts, neovim/nvim, helix, wezterm, all"
+                echo "Valid parameters are: zsh, zellij, yazi, fonts, neovim/nvim, helix, alacritty, all"
                 exit 1
                 ;;
         esac
@@ -157,22 +160,22 @@ function setup() {
         case $param in
             "all")
                 setup_zsh
-                setup_tmux
+                setup_zellij
                 setup_yazi
                 setup_fonts
                 setup_neovim
                 setup_helix
-                setup_wezterm
+                setup_alacritty
                 return
                 ;;
-            "wezterm")
-                setup_wezterm
+            "alacritty")
+                setup_alacritty
                 ;;
             "zsh")
                 setup_zsh
                 ;;
-            "tmux")
-                setup_tmux
+            "zellij")
+                setup_zellij
                 ;;
             "yazi")
                 setup_yazi
