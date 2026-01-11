@@ -41,8 +41,7 @@ alias zshreload="source ~/.zshrc"
 
 alias vi="nvim"
 
-alias zs="zellij -s"
-alias zj="zellij --layout compact -s"
+alias zj="zellij -s"
 alias za="zellij attach"
 alias zl="zellij list-sessions"
 alias zk="zellij kill-session"

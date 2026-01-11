@@ -25,9 +25,8 @@ M.opts = {
         height = 0.36,
       },
       keys = {
-        hide_n = { "q", "hide", mode = "n", desc = "hide the terminal window" },
-        hide_ctrl_q = { "<c-q>", "hide", mode = "nt", desc = "hide the terminal window" },
-        stopinsert = { "<c-n>", "stopinsert", mode = "t", desc = "enter normal mode" },
+        hide_ctrl_q = { "<c-q>", "hide", mode = "n", desc = "hide the terminal window" },
+        stopinsert = { "<c-q>", "stopinsert", mode = "t", desc = "enter normal mode" },
         prompt = { "<c-p>", "prompt", mode = "t", desc = "insert prompt or context" },
       },
     },

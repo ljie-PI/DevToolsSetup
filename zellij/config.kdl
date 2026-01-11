@@ -154,7 +154,6 @@ keybinds clear-defaults=true {
         bind "Alt o" { MoveTab "right"; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
-        bind "Ctrl q" { Quit; }
     }
     shared_except "locked" "move" {
         bind "Ctrl m" { SwitchToMode "move"; }
@@ -250,7 +249,7 @@ plugins {
     about location="zellij:about"
     // compact-bar location="zellij:compact-bar"
     compact-bar location="zellij:compact-bar" {
-        tooltip "Ctrl k"
+        tooltip "Ctrl /"
     }
     configuration location="zellij:configuration"
     filepicker location="zellij:strider" {

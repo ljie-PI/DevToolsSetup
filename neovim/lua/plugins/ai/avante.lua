@@ -54,7 +54,7 @@ M.opts = {
     },
     submit = {
       normal = "<CR>",
-      insert = "<C-g>",
+      insert = "<C-f>",
     },
     sidebar = {
       apply_all = "A",
